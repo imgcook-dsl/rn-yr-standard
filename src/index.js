@@ -85,7 +85,7 @@ module.exports = function(layoutData, options) {
           } else {
             source = `'${json.attrs.src}'`;
           }
-          result += `<Picture resizeMod={'contain'} style={styles.${className}} source={{uri: ${source}}} />`;
+          result += `<Image resizeMod={'contain'} style={styles.${className}} source={{uri: ${source}}} />`;
 
           if (!raxImport[type]) {
             raxImport[type] = `import Picture from 'rax-picture';`;
@@ -114,7 +114,7 @@ module.exports = function(layoutData, options) {
       : '';
 
   renderData.modClass = `
-    class Mod extends Component {
+    class Mod extends React.Component {
       render() {
         ${dataBinding}
         return (
@@ -130,8 +130,8 @@ module.exports = function(layoutData, options) {
     })
     .join('\n');
   renderData.mockData = `var mock = ${JSON.stringify(mock)}`;
-  renderData.style = `var styles = ${JSON.stringify(style)}`;
-  renderData.export = `render(<Mod dataSource={mock} />);`;
+  renderData.export = `render(<Mod dataSource={mock} />)`;
+  renderData.style = `var styles = ${JSON.stringify(style)};`;
 
   const prettierOpt = {
     printWidth: 120,
